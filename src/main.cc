@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
         option = "";
       } else {
         xCoord = std::atoi(option.c_str());
-        if ((xCoord >= nValue) || (xCoord == 0)) {
+        if ((xCoord > nValue) || (xCoord == 0)) {
           option = "";
         }
       }
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
         option = "";
       } else {
         yCoord = std::atoi(option.c_str());
-        if ((yCoord >= mValue) || (yCoord == 0)) {
+        if ((yCoord > mValue) || (yCoord == 0)) {
           option = "";
         }
       }
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
         option = "";
       } else {
         xCoord = std::atoi(option.c_str());
-        if ((xCoord >= nValue) || (xCoord == 0)) {
+        if ((xCoord > nValue) || (xCoord == 0)) {
           option = "";
         }
       }
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
         option = "";
       } else {
         yCoord = std::atoi(option.c_str());
-        if ((yCoord >= mValue) || (yCoord == 0)) {
+        if ((yCoord > mValue) || (yCoord == 0)) {
           option = "";
         }
       }
@@ -125,7 +125,7 @@ int main(int argc, char *argv[]) {
     system("clear");
     std::cout << world << std::endl;
     world.moveDefect();
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(250));
   }
 
   return 0;
