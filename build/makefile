@@ -1,4 +1,4 @@
-OBJECTS = main.o stringUtils.o cell.o world.o
+OBJECTS = main.o stringUtils.o cell.o world.o userInput.o
 CFLAGS = -c -Wall -std=c++14
 
 informedSearch: $(OBJECTS)
@@ -11,6 +11,9 @@ main.o: ../src/main.cc
 
 stringUtils.o: ../src/stringUtils.cc ../include/stringUtils.h
 	g++ $(CFLAGS) ../src/stringUtils.cc
+
+userInput.o: ../src/userInput.cc ../include/userInput.h
+	g++ $(CFLAGS) ../src/userInput.cc
 
 cell.o: ../src/cell.cc ../include/cell.h
 	g++ $(CFLAGS) ../src/cell.cc

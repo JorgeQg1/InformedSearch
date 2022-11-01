@@ -1,11 +1,19 @@
 #pragma once
 #include <iostream>
 
-const std::string VISITED = "#";
-const std::string CAR = "C";
-const std::string START = "S";
-const std::string END = "X";
+const std::string RESET = "\033[0m";
+const std::string RED = "\033[31m";
+const std::string GREEN = "\033[32m";
+const std::string BLUE = "\033[34m";
+const std::string CYAN = "\033[36m";
+
 const std::string EMPTY = " ";
+const std::string VISITED = GREEN + "#" + RESET;
+const std::string CAR = RED + "C" + RESET;
+
+const std::string START = BLUE + "S" + RESET;
+const std::string END = CYAN + "X" + RESET;
+
 
 class Cell {
   private:

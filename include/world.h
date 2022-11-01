@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <thread>
+#include <chrono>
 #include "../include/cell.h"
 
 class World {
@@ -19,7 +22,8 @@ class World {
     size_t getNSize();
     Cell getStartCell();
     Cell getEndCell();
-    void moveDefect();
+    bool moveDefect();
+    void drawPath();
 
     friend std::ostream& operator<<(std::ostream& os, const World& world) {
       Cell aux = world.car_;

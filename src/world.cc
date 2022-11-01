@@ -46,12 +46,26 @@ Cell World::getEndCell() {
   return end_;
 }
 
-void World::moveDefect() {
+bool World::moveDefect() {
   if (car_.getXCoord() < mSize_ - 1) {
     car_ = Cell(car_.getXCoord() + 1, car_.getYCoord(), CAR);
+    world_[car_.getXCoord()][car_.getYCoord()] = Cell(car_.getXCoord(), car_.getYCoord(), VISITED);
+    return true;
   } else if (car_.getYCoord() < nSize_ - 1) {
     car_ = Cell(car_.getXCoord(), car_.getYCoord() + 1, CAR);
+    world_[car_.getXCoord()][car_.getYCoord()] = Cell(car_.getXCoord(), car_.getYCoord(), VISITED);
+    return true;
   }
+  return false;
+}
 
-  world_[car_.getXCoord()][car_.getYCoord()] = Cell(car_.getXCoord(), car_.getYCoord(), VISITED);
+void World::drawPath() {
+  bool canMove = true;
+  while (canMove) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(250));
+    system("clear");
+
+    std::cout << *this << std::endl;
+    canMove = this->moveDefect();
+  }
 }
