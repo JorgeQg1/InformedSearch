@@ -27,8 +27,12 @@ void Cell::setG(size_t cost) {
   g_ = cost;
 }
 
-void Cell::calcManhattanHeu(Position endPos) {//TODO
-  h_ = 1;
+void Cell::calcManhattanHeu(Position endPos) {
+  int x1 = pos_.getXCoord();
+  int y1 = pos_.getYCoord();
+  int x2 = endPos.getXCoord();
+  int y2 = endPos.getYCoord();
+  h_ = std::abs(x1 - x2) + std::abs(y1 - y2);
 }
 
 void Cell::calcEuclideanHeu(Position endPos) {//TODO

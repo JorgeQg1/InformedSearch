@@ -54,6 +54,11 @@ Cell World::getEndCell() {
 
 void World::AStarAlgorithm() {
   while(car_.getPosition() != end_.getPosition()) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(250));
+    system("clear");
+
+    std::cout << *this << std::endl;
+    
     std::vector<double> values = std::vector<double>(4, 999999999);
     Position aux = car_.getPosition();
     if (aux.getXCoord() + 1 < mSize_) {//Move down can be done

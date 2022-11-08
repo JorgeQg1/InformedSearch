@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <cmath>
 #include "../include/position.h"
 
 const std::string RESET = "\033[0m";
