@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
   Cell end = UserInput::askForEndPoint(mValue, nValue);
 
   World world = World(mValue, nValue, start, end);
-  world.drawPath();
+  world.AStarAlgorithm();
 
   return 0;
 }

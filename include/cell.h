@@ -20,12 +20,20 @@ class Cell {
   private:
     Position pos_;
     std::string value_;
+
+    size_t g_;
+    double h_;
   public:
     Cell();
     Cell(Position pos);
     Cell(Position pos, std::string value);
     Position getPosition();
     std::string getValue();
+
+    void setG(size_t cost);
+    void calcManhattanHeu(Position endPos);
+    void calcEuclideanHeu(Position endPos);
+    double getF();
 
     friend std::ostream& operator<<(std::ostream& os, const Cell& cell) {
       os << cell.value_;

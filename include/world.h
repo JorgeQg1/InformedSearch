@@ -23,6 +23,9 @@ class World {
     size_t getNSize();
     Cell getStartCell();
     Cell getEndCell();
+
+    void AStarAlgorithm();
+
     void drawPath();
     bool moveDefect();
 

@@ -52,6 +52,71 @@ Cell World::getEndCell() {
   return end_;
 }
 
+void World::AStarAlgorithm() {
+  while(car_.getPosition() != end_.getPosition()) {
+    std::vector<double> values = std::vector<double>(4, 999999999);
+    Position aux = car_.getPosition();
+    if (aux.getXCoord() + 1 < mSize_) {//Move down can be done
+      world_[aux.getXCoord() + 1][aux.getYCoord()].setG(car_.getMoves() + 1);
+      world_[aux.getXCoord() + 1][aux.getYCoord()].calcManhattanHeu(end_.getPosition());
+      //world_[aux.getXCoord() + 1][aux.getYCoord()].calcEuclideanHeu(end_.getPosition());
+      values[0] = world_[aux.getXCoord() + 1][aux.getYCoord()].getF();
+    }
+    if (aux.getYCoord() - 1 >= 0) {//Move left can be done
+      world_[aux.getXCoord()][aux.getYCoord() - 1].setG(car_.getMoves() + 1);
+      world_[aux.getXCoord()][aux.getYCoord() - 1].calcManhattanHeu(end_.getPosition());
+      //world_[aux.getXCoord()][aux.getYCoord() - 1].calcEuclideanHeu(end_.getPosition());
+      values[1] = world_[aux.getXCoord()][aux.getYCoord() - 1].getF();
+    }
+    if (aux.getXCoord() - 1 >= 0) {//Move up can be done
+      world_[aux.getXCoord() - 1][aux.getYCoord()].setG(car_.getMoves() + 1);
+      world_[aux.getXCoord() - 1][aux.getYCoord()].calcManhattanHeu(end_.getPosition());
+      //world_[aux.getXCoord() - 1][aux.getYCoord()].calcEuclideanHeu(end_.getPosition());
+      values[2] = world_[aux.getXCoord() - 1][aux.getYCoord()].getF();
+    }
+    if (aux.getYCoord() + 1 < nSize_) {//Move right can be done
+      world_[aux.getXCoord()][aux.getYCoord() + 1].setG(car_.getMoves() + 1);
+      world_[aux.getXCoord()][aux.getYCoord() + 1].calcManhattanHeu(end_.getPosition());
+      //world_[aux.getXCoord()][aux.getYCoord() + 1].calcEuclideanHeu(end_.getPosition());
+      values[3] = world_[aux.getXCoord()][aux.getYCoord() + 1].getF();
+    }
+
+    size_t betterPosition = 0;
+    size_t minimum = 999999999;
+    for (size_t i = 0; i < values.size(); i++) {
+      if (values[i] < minimum) {
+        minimum = values[i];
+        betterPosition = i;
+      }
+    }
+
+    if (betterPosition == 0) {//Moving down
+      car_ = Car(Position(car_.getPosition().getXCoord() + 1, car_.getPosition().getYCoord()));
+      car_.setMoves(car_.getMoves() + 1);
+      world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
+    } else if (betterPosition == 1) {//Moving left
+      car_ = Car(Position(car_.getPosition().getXCoord(), car_.getPosition().getYCoord() - 1));
+      car_.setMoves(car_.getMoves() + 1);
+      world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
+    } else if (betterPosition == 2) {//Moving up
+      car_ = Car(Position(car_.getPosition().getXCoord() - 1, car_.getPosition().getYCoord()));
+      car_.setMoves(car_.getMoves() + 1);
+      world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
+    } else if (betterPosition == 3) {//Moving right
+      car_ = Car(Position(car_.getPosition().getXCoord(), car_.getPosition().getYCoord() + 1));
+      car_.setMoves(car_.getMoves() + 1);
+      world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
+    }
+  }
+}
+
+
+
+
+
+
+
+
 bool World::moveDefect() {
   if (car_.getPosition().getXCoord() < mSize_ - 1) {
     car_ = Car(Position(car_.getPosition().getXCoord() + 1, car_.getPosition().getYCoord()));
