@@ -22,7 +22,7 @@ class Cell {
     Position pos_;
     std::string value_;
 
-    size_t g_;
+    double g_;
     double h_;
   public:
     Cell();

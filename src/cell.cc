@@ -35,8 +35,12 @@ void Cell::calcManhattanHeu(Position endPos) {
   h_ = std::abs(x1 - x2) + std::abs(y1 - y2);
 }
 
-void Cell::calcEuclideanHeu(Position endPos) {//TODO
-  h_ = 1;
+void Cell::calcEuclideanHeu(Position endPos) {
+  int x1 = pos_.getXCoord();
+  int y1 = pos_.getYCoord();
+  int x2 = endPos.getXCoord();
+  int y2 = endPos.getYCoord();
+  h_ = std::sqrt(std::pow(x1 - x2, 2) + std::pow(y1 - y2, 2));
 }
 
 double Cell::getF() {

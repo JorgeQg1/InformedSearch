@@ -24,10 +24,7 @@ class World {
     Cell getStartCell();
     Cell getEndCell();
 
-    void AStarAlgorithm();
-
-    void drawPath();
-    bool moveDefect();
+    void AStarAlgorithm(size_t option);
 
     friend std::ostream& operator<<(std::ostream& os, const World& world) {
       Car aux = world.car_;

@@ -105,3 +105,22 @@ Cell UserInput::askForEndPoint(size_t mValue, size_t nValue) {
   std::cout << std::endl;
   return Cell(Position(xCoord - 1, yCoord - 1), END);
 }
+
+size_t UserInput::askForHeuristic() {
+  size_t nValue;
+  std::string option = "";
+  while (option.empty()) {
+    std::cout << "Please introduce type of heuristic (0 Manhattan/1 Euclidean): ";
+    std::cin >> option;
+    if (!StringUtils::isStringNumber(option)) {
+      option = "";
+    } else {
+      nValue = std::atoi(option.c_str());
+      if ((nValue != 0) && (nValue != 1)) {
+        option = "";
+      }
+    }
+  }
+  std::cout << std::endl;
+  return nValue;
+}
