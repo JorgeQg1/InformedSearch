@@ -53,8 +53,18 @@ Cell World::getEndCell() {
 }
 
 void World::AStarAlgorithm(size_t option) {
+  size_t time = 0;
+  size_t size = mSize_ * nSize_;
+  if (size < 200) {
+    time = 200;
+  } else if (size < 1000) {
+    time = 100;
+  } else {
+    time = 50;
+  }
+
   while(car_.getPosition() != end_.getPosition()) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(250));
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
     system("clear");
 
     std::cout << *this << std::endl;
