@@ -69,7 +69,7 @@ Cell UserInput::askForStartPoint(size_t mValue, size_t nValue) {
     }
   }
   std::cout << std::endl;
-  return Cell(xCoord - 1, yCoord - 1, START);
+  return Cell(Position(xCoord - 1, yCoord - 1), START);
 }
 
 Cell UserInput::askForEndPoint(size_t mValue, size_t nValue) {
@@ -103,5 +103,5 @@ Cell UserInput::askForEndPoint(size_t mValue, size_t nValue) {
     }
   }
   std::cout << std::endl;
-  return Cell(xCoord - 1, yCoord - 1, END);
+  return Cell(Position(xCoord - 1, yCoord - 1), END);
 }

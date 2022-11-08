@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "../include/position.h"
 
 const std::string RESET = "\033[0m";
 const std::string RED = "\033[31m";
@@ -17,15 +18,14 @@ const std::string END = CYAN + "X" + RESET;
 
 class Cell {
   private:
-    size_t xCoord_;
-    size_t yCoord_;
+    Position pos_;
     std::string value_;
   public:
     Cell();
-    Cell(size_t xCoord, size_t yCoord);
-    Cell(size_t xCoord, size_t yCoord, std::string value);
-    size_t getXCoord();
-    size_t getYCoord();
+    Cell(Position pos);
+    Cell(Position pos, std::string value);
+    Position getPosition();
+    std::string getValue();
 
     friend std::ostream& operator<<(std::ostream& os, const Cell& cell) {
       os << cell.value_;

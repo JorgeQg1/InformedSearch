@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 #include "../include/cell.h"
+#include "../include/car.h"
 
 class World {
   private:
@@ -13,7 +14,7 @@ class World {
     Cell start_;
     Cell end_;
 
-    Cell car_;
+    Car car_;
     std::vector<std::vector<Cell>> world_;
   public:
     World();
@@ -22,14 +23,14 @@ class World {
     size_t getNSize();
     Cell getStartCell();
     Cell getEndCell();
-    bool moveDefect();
     void drawPath();
+    bool moveDefect();
 
     friend std::ostream& operator<<(std::ostream& os, const World& world) {
-      Cell aux = world.car_;
+      Car aux = world.car_;
       for (size_t i = 0; i < world.world_.size(); i++) {
         for (size_t j = 0; j < world.world_[i].size(); j++) {
-          if ((i == aux.getXCoord()) && (j == aux.getYCoord())) {
+          if ((i == aux.getPosition().getXCoord()) && (j == aux.getPosition().getYCoord())) {
             os << "|" << CAR;
           } else {
             os << "|" << world.world_[i][j];

@@ -3,27 +3,33 @@
 World::World() {
   mSize_ = 0;
   nSize_ = 0;
+
   start_ = Cell();
   end_ = Cell();
-  car_ = Cell();
+
+  car_ = Car();
+
   world_ = std::vector<std::vector<Cell>>();
 }
 
 World::World(size_t mSize, size_t nSize, Cell start, Cell end) {
   mSize_ = mSize;
   nSize_ = nSize;
+
   start_ = start;
   end_ = end;
-  car_ = Cell(start_.getXCoord(), start_.getYCoord(), CAR);
+
+  car_ = Car(start_.getPosition());
+
   for (size_t i = 0; i < mSize_; i++) {
     std::vector<Cell> aux;
     for (size_t j = 0; j < nSize_; j++) {
-      if ((i == start.getXCoord()) && (j == start.getYCoord())) {
+      if (start.getPosition() == Position(i,j)) {
         aux.push_back(start_);
-      } else if ((i == end.getXCoord()) && (j == end.getYCoord())) {
+      } else if (end.getPosition() == Position(i,j)) {
         aux.push_back(end_);
       } else {
-        aux.push_back(Cell(i,j));
+        aux.push_back(Cell(Position(i,j)));
       }
     }
     world_.push_back(aux);
@@ -47,13 +53,13 @@ Cell World::getEndCell() {
 }
 
 bool World::moveDefect() {
-  if (car_.getXCoord() < mSize_ - 1) {
-    car_ = Cell(car_.getXCoord() + 1, car_.getYCoord(), CAR);
-    world_[car_.getXCoord()][car_.getYCoord()] = Cell(car_.getXCoord(), car_.getYCoord(), VISITED);
+  if (car_.getPosition().getXCoord() < mSize_ - 1) {
+    car_ = Car(Position(car_.getPosition().getXCoord() + 1, car_.getPosition().getYCoord()));
+    world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
     return true;
-  } else if (car_.getYCoord() < nSize_ - 1) {
-    car_ = Cell(car_.getXCoord(), car_.getYCoord() + 1, CAR);
-    world_[car_.getXCoord()][car_.getYCoord()] = Cell(car_.getXCoord(), car_.getYCoord(), VISITED);
+  } else if (car_.getPosition().getYCoord() < nSize_ - 1) {
+    car_ = Car(Position(car_.getPosition().getXCoord(), car_.getPosition().getYCoord() + 1));
+    world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
     return true;
   }
   return false;
