@@ -117,24 +117,26 @@ void World::AStarAlgorithm(size_t option) {
       }
     }
 
+    size_t nMoves = car_.getMoves();
     if (betterPosition == 0) {//Moving down
       car_ = Car(Position(car_.getPosition().getXCoord() + 1, car_.getPosition().getYCoord()));
-      car_.setMoves(car_.getMoves() + 1);
+      car_.setMoves(nMoves + 1);
       world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
     } else if (betterPosition == 1) {//Moving left
       car_ = Car(Position(car_.getPosition().getXCoord(), car_.getPosition().getYCoord() - 1));
-      car_.setMoves(car_.getMoves() + 1);
+      car_.setMoves(nMoves + 1);
       world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
     } else if (betterPosition == 2) {//Moving up
       car_ = Car(Position(car_.getPosition().getXCoord() - 1, car_.getPosition().getYCoord()));
-      car_.setMoves(car_.getMoves() + 1);
+      car_.setMoves(nMoves + 1);
       world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
     } else if (betterPosition == 3) {//Moving right
       car_ = Car(Position(car_.getPosition().getXCoord(), car_.getPosition().getYCoord() + 1));
-      car_.setMoves(car_.getMoves() + 1);
+      car_.setMoves(nMoves + 1);
       world_[car_.getPosition().getXCoord()][car_.getPosition().getYCoord()] = Cell(car_.getPosition(), VISITED);
     }
   }
   system("clear");
   std::cout << *this << std::endl;
+  std::cout << car_.getMoves() << std::endl;
 }
