@@ -3,6 +3,7 @@
 size_t UserInput::askForMValue() {
   size_t mValue;
   std::string option = "";
+  std::cout << "\n=========================== Program Informed Search ===========================\n\n";
   while (option.empty()) {
     std::cout << "Please introduce M value for the map bigger than 0: ";
     std::cin >> option;
@@ -41,7 +42,7 @@ size_t UserInput::askForNValue() {
 Cell UserInput::askForStartPoint(size_t mValue, size_t nValue) {
   size_t xCoord;
   size_t yCoord;
-
+  std::cout << "---------------------------------------------------------------------------------------\n\n";
   std::string option = "";
   while (option.empty()) {
     std::cout << "Please introduce x coordinate value for the start point less or equal than " << mValue << ": ";
@@ -75,7 +76,7 @@ Cell UserInput::askForStartPoint(size_t mValue, size_t nValue) {
 Cell UserInput::askForEndPoint(size_t mValue, size_t nValue) {
   size_t xCoord;
   size_t yCoord;
-
+  std::cout << "---------------------------------------------------------------------------------------\n\n";
   std::string option = "";
   while (option.empty()) {
     std::cout << "Please introduce x coordinate value for the end point less or equal than " << mValue << ": ";
@@ -110,6 +111,7 @@ size_t UserInput::askForHeuristic() {
   size_t nValue;
   std::string option = "";
   while (option.empty()) {
+    std::cout << "---------------------------------------------------------------------------------------\n\n";
     std::cout << "Please introduce type of heuristic (0 Manhattan/1 Euclidean): ";
     std::cin >> option;
     if (!StringUtils::isStringNumber(option)) {
