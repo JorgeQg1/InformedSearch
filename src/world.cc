@@ -72,7 +72,7 @@ void World::AStarAlgorithm(size_t option) {
     std::vector<double> values = std::vector<double>(4, 999999999.9);
     Position aux = car_.getPosition();
     if (aux.getXCoord() + 1 < mSize_) {//Move down can be done
-      world_[aux.getXCoord() + 1][aux.getYCoord()].setG(car_.getMoves());
+      world_[aux.getXCoord() + 1][aux.getYCoord()].setG(car_.getMoves() + 1);
       if (option == 0) {
         world_[aux.getXCoord() + 1][aux.getYCoord()].calcManhattanHeu(end_.getPosition());
       } else {
@@ -81,7 +81,7 @@ void World::AStarAlgorithm(size_t option) {
       values[0] = world_[aux.getXCoord() + 1][aux.getYCoord()].getF();
     }
     if (aux.getYCoord() != 0) {//Move left can be done
-      world_[aux.getXCoord()][aux.getYCoord() - 1].setG(car_.getMoves());
+      world_[aux.getXCoord()][aux.getYCoord() - 1].setG(car_.getMoves() + 1);
       if (option == 0) {
         world_[aux.getXCoord()][aux.getYCoord() - 1].calcManhattanHeu(end_.getPosition());
       } else {
@@ -90,7 +90,7 @@ void World::AStarAlgorithm(size_t option) {
       values[1] = world_[aux.getXCoord()][aux.getYCoord() - 1].getF();
     }
     if (aux.getXCoord() != 0) {//Move up can be done
-      world_[aux.getXCoord() - 1][aux.getYCoord()].setG(car_.getMoves());
+      world_[aux.getXCoord() - 1][aux.getYCoord()].setG(car_.getMoves() + 1);
       if (option == 0) {
         world_[aux.getXCoord() - 1][aux.getYCoord()].calcManhattanHeu(end_.getPosition());
       } else {
@@ -99,7 +99,7 @@ void World::AStarAlgorithm(size_t option) {
       values[2] = world_[aux.getXCoord() - 1][aux.getYCoord()].getF();
     }
     if (aux.getYCoord() + 1 < nSize_) {//Move right can be done
-      world_[aux.getXCoord()][aux.getYCoord() + 1].setG(car_.getMoves());
+      world_[aux.getXCoord()][aux.getYCoord() + 1].setG(car_.getMoves() + 1);
       if (option == 0) {
         world_[aux.getXCoord()][aux.getYCoord() + 1].calcManhattanHeu(end_.getPosition());
       } else {
